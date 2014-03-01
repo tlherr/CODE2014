@@ -4,7 +4,9 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Renegade\Bundle\CarImpactBundle\Entity\Make" table="make">
+    <entity name="Renegade\Bundle\CarImpactBundle\Entity\Make"
+            repository-class="Renegade\Bundle\CarImpactBundle\Entity\MakeRepository"
+            table="make">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
