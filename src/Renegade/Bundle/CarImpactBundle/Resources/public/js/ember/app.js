@@ -15,16 +15,7 @@ $(document).ready(function() {
     });
 
     App.IndexRoute = Ember.Route.extend({
-        setupController: function(controller) {
-            // This sets the IndexController's title property:
-            controller.set('title', "The is the index controller");
-        }
-    });
-
-    App.MakesRoute = Ember.Route.extend({
         model: function() {
-
-            console.log(App.Make.all());
             return App.Make.all();
         }
     });
@@ -43,7 +34,7 @@ $(document).ready(function() {
         all: function(){
             this.allMakes = [];
             $.ajax({
-                url: window.location.protocol + "//" + window.location.host + "/app_dev.php/api/v1/makes",
+                url: "http://code2014.mark.renegade.local/app_dev.php/api/v1/makes",
                 dataType: 'json',
                 context: this,
                 success: function(response){

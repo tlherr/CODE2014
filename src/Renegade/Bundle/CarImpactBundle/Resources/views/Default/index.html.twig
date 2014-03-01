@@ -5,11 +5,7 @@
 
     {% verbatim %}
     <script type="text/x-handlebars" data-template-name="application">
-        <nav>
-            {{#linkTo "index"}}Home{{/linkTo}}
-            {{#linkTo "makes"}}Makes{{/linkTo}}
-        </nav>
-        <div>
+        <div class="page-container">
             {{outlet}}
         </div>
     </script>
@@ -18,14 +14,6 @@
 
     {% verbatim %}
     <script type="text/x-handlebars" data-template-name="index">
-        <div>{{title}}</div>
-    </script>
-    {% endverbatim %}
-
-    {% verbatim %}
-    <script type="text/x-handlebars" data-template-name="makes">
-
-
         <div class="form-group">
             <input class="typeahead" id="vehicle-make-typeahead" type="text" placeholder="Vehicle Make (ex Toyota)">
         </div>
@@ -35,9 +23,7 @@
             <li>{{make.label}}</li>
             {{/each}}
         </ul>
-
     </script>
     {% endverbatim %}
-
 
 {% endblock %}
