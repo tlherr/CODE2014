@@ -2,16 +2,48 @@
 
 {% block body_container_main %}
 
-    <div class="form-group">
-        <input class="typeahead" id="vehicle-make-typeahead" type="text" placeholder="Vehicle Make (ex Toyota)">
-    </div>
+    {% verbatim %}
+    <script type="text/x-handlebars" data-template-name="application">
+        <nav>
+            {{#linkTo "index"}}Home{{/linkTo}}
+            {{#linkTo "contributors"}}Contributors{{/linkTo}}
+        </nav>
+        <div>
+            {{outlet}}
+        </div>
+    </script>
+    {% endverbatim %}
 
-    <div class="form-group">
-        <input class="typeahead" id="vehicle-model-typeahead" type="text" placeholder="Vehicle Model (ex Corolla)">
-    </div>
 
-    <div class="form-group">
-        <a href="#" class="btn btn-primary">Add Vehicle</a>
-    </div>
+    {% verbatim %}
+    <script type="text/x-handlebars" data-template-name="index">
+        <div>{{title}}</div>
+    </script>
+    {% endverbatim %}
+
+    {% verbatim %}
+    <script type="text/x-handlebars" data-template-name="contributors">
+
+        <div class="form-group">
+            <input class="typeahead" id="vehicle-make-typeahead" type="text" placeholder="Vehicle Make (ex Toyota)">
+        </div>
+
+        <div class="form-group">
+            <input class="typeahead" id="vehicle-model-typeahead" type="text" placeholder="Vehicle Model (ex Corolla)">
+        </div>
+
+        <div class="form-group">
+            <a href="#" class="btn btn-primary">Add Vehicle</a>
+        </div>
+
+        <ul>
+            {{#each contributor in controller}}
+            <li>{{contributor.label}}</li>
+            {{/each}}
+        </ul>
+
+    </script>
+    {% endverbatim %}
+
 
 {% endblock %}
