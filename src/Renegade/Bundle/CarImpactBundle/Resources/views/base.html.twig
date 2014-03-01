@@ -15,8 +15,7 @@
         {% endblock head_meta %}
             <title>{% block head_title %}{% endblock %}</title>
         {% block head_css %}
-            <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-            {% stylesheets '@RenegadeCarImpactBundle/Resources/public/css/screen.css' %}
+            {% stylesheets '@RenegadeCarImpactBundle/Resources/assets/generated/css/screen.css' %}
                 <link rel="stylesheet"  href="{{ asset_url }}" >
             {% endstylesheets %}
         {% endblock %}
@@ -24,11 +23,16 @@
         {% block head_js %}
         {% endblock %}
         {% endblock head %}
+        <script type="text/javascript">
+            window.carImpactSettings = {
+                apiPath: "{{ path('renegade_car_impacty_api_index') }}"
+            };
+        </script>
     </head>
 {% endblock head_outer %}
 {% block body_outer %}
     <body {{bp_body_attributes|default('')|raw}}>
-    {%block body%}
+    {% block body %}
         {% block body_chromeframe %}
             <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -49,20 +53,17 @@
         {%endblock body_container%}
         {% block body_js %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="{% javascripts '@RenegadeCarImpactBundle/Resources/public/bower/jquery/jquery.js' %}{{ asset_url }}{% endjavascripts %}"><\/script>')</script>
-
+            {% javascripts '@RenegadeCarImpactBundle/Resources/assets/bower/jquery/dist/jquery.js' %}
+            <script>window.jQuery || document.write('<script src="{{ asset_url }}"><\/script>')</script>
+            {% endjavascripts %}
             {% javascripts
-                '@RenegadeCarImpactBundle/Resources/public/bower/handlebars/handlebars.js'
-                '@RenegadeCarImpactBundle/Resources/public/bower/ember/ember.js'
-                '@RenegadeCarImpactBundle/Resources/public/bower/ember-data/ember-data.js'
-                '@RenegadeCarImpactBundle/Resources/public/bower/typeahead.js/dist/typeahead.bundle.js'
-                '@RenegadeCarImpactBundle/Resources/public/js/ember/app.js'
-                '@RenegadeCarImpactBundle/Resources/public/bower/bootstrap/js/modal.js'
-                '@RenegadeCarImpactBundle/Resources/public/bower/bootstrap/js/collapse.js' %}
+                '@RenegadeCarImpactBundle/Resources/assets/bower/underscore/underscore.js'
+                '@RenegadeCarImpactBundle/Resources/assets/bower/backbone/backbone.js'
+                '@RenegadeCarImpactBundle/Resources/assets/js/backbone/views/app-view.js'
+                '@RenegadeCarImpactBundle/Resources/assets/js/backbone/app.js'
+            %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
-
-
         {% endblock body_js %}
     {% endblock body %}
     </body>

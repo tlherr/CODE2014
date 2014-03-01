@@ -1,29 +1,25 @@
 {% extends 'RenegadeCarImpactBundle::base.html.twig' %}
 
 {% block body_container_main %}
+    <section id="vehicle-app">
+        <section id="vehicle-select">
+            <div class="form-group">
+                <input type="text" id="make-entry" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="model-entry" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="year-entry" class="form-control" />
+            </div>
+        </section>
+        <section id="vehicle-listing">
 
-
-    {% verbatim %}
-    <script type="text/x-handlebars" data-template-name="application">
-        <div class="page-container">
-            {{outlet}}
+        </section>
+    </section>
+    <script type="text/template" id="vehicle-template">
+        <div class="vehicle">
+            <span><%- id %></span>
         </div>
     </script>
-    {% endverbatim %}
-
-
-    {% verbatim %}
-    <script type="text/x-handlebars" data-template-name="index">
-        <div class="form-group">
-            <input class="typeahead" id="vehicle-make-typeahead" type="text" placeholder="Vehicle Make (ex Toyota)">
-        </div>
-
-        <ul>
-            {{#each make in controller}}
-            <li>{{make.label}}</li>
-            {{/each}}
-        </ul>
-    </script>
-    {% endverbatim %}
-
 {% endblock %}

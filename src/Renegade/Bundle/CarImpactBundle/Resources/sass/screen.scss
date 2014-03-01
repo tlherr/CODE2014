@@ -1,62 +1,7 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
-@import "compass/reset";
 @import "singularitygs";
 
-// Bootstrap
-// Core variables and mixins
-@import "partials/variables";
-@import "partials/mixins";
-
 // Reset
-@import "partials/normalize";
-@import "partials/print";
-
-// Core CSS
-@import "partials/scaffolding";
-@import "partials/type";
-@import "partials/code";
-@import "partials/grid";
-@import "partials/tables";
-@import "partials/forms";
-@import "partials/buttons";
-
-// Components
-@import "partials/component-animations";
-@import "partials/dropdowns";
-@import "partials/button-groups";
-@import "partials/input-groups";
-@import "partials/navs";
-@import "partials/navbar";
-@import "partials/breadcrumbs";
-@import "partials/pagination";
-@import "partials/pager";
-@import "partials/labels";
-@import "partials/badges";
-@import "partials/jumbotron";
-@import "partials/thumbnails";
-@import "partials/alerts";
-@import "partials/progress-bars";
-@import "partials/media";
-@import "partials/list-group";
-@import "partials/panels";
-@import "partials/wells";
-@import "partials/close";
-
-// Components w/ JavaScript
-@import "partials/modals";
-@import "partials/tooltip";
-@import "partials/popovers";
-@import "partials/carousel";
-
-// Utility classes
-@import "partials/utilities";
-
-
-
+@import "partials/bootstrap";
+@import "partials/variables";
 @import "partials/style";
 @import "partials/layouts";
-@import "partials/typeahead";

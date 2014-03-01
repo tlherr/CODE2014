@@ -1,5 +1,3 @@
-
-
 .main {
   @include grid-span(4, 2);
 
@@ -14,6 +12,4 @@
   @include breakpoint($screen-lg) {
     @include grid-span(22, 2);
   }
-
 }
-
