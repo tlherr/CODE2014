@@ -9,8 +9,8 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="label" column="label" type="string" length="32" />
-        <field name="canonicalLabel" column="canonical_label" type="string" length="32" />
+        <field name="label" column="label" type="string" length="64 " />
+        <field name="canonicalLabel" column="canonical_label" type="string" length="64" />
 
         <many-to-one target-entity="Renegade\Bundle\CarImpactBundle\Entity\Make" field="make">
             <join-column name="make_id" />
