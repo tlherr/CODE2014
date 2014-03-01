@@ -9,3 +9,7 @@
 /vendor/
 /bin/
 /composer.phar
+src/Renegade/Bundle/CarImpactBundle/Resources/node_modules/
+src/Renegade/Bundle/CarImpactBundle/Resources/public/bower/
+web/js/
+web/css/
