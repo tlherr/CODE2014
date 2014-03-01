@@ -1,0 +1,19 @@
+{
+  "name": "CarImpactBundle",
+  "version": "1.0.0",
+  "authors": [
+    "Mark Hayes <mark@renegadedigital.com>",
+    "Thomas Herr <tom@renegadedigital.com>"
+  ],
+  "dependencies": {
+    "jquery": "1.11.0",
+    "modernizr": "2.7.1"
+  },
+  "description": "UI Elements for CarImpact Bundle",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "public/bower"
+  ]
+}
