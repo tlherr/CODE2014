@@ -49,7 +49,7 @@
         {%endblock body_container%}
         {% block body_js %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="{% javascripts '@RenegadeCarImpactBundle/Resources/public/bower/jquery/dist/jquery.js' %}{{ asset_url }}{% endjavascripts %}"><\/script>')</script>
+            <script>window.jQuery || document.write('<script src="{% javascripts '@RenegadeCarImpactBundle/Resources/public/bower/jquery/jquery.js' %}{{ asset_url }}{% endjavascripts %}"><\/script>')</script>
 
             {% javascripts
                 '@RenegadeCarImpactBundle/Resources/public/bower/handlebars/handlebars.js'
@@ -61,6 +61,7 @@
                 '@RenegadeCarImpactBundle/Resources/public/bower/bootstrap/js/collapse.js' %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
+
 
         {% endblock body_js %}
     {% endblock body %}

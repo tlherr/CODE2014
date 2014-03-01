@@ -11,9 +11,8 @@ $(document).ready(function() {
     //Routing
 
     App.Router.map(function(){
-        this.route('contributors');
+        this.route('makes');
     });
-
 
     App.IndexRoute = Ember.Route.extend({
         setupController: function(controller) {
@@ -22,36 +21,38 @@ $(document).ready(function() {
         }
     });
 
-    App.ContributorsRoute = Ember.Route.extend({
+    App.MakesRoute = Ember.Route.extend({
         model: function() {
-            return App.Contributor.all();
+
+            console.log(App.Make.all());
+            return App.Make.all();
         }
     });
 
     //Models
 
     var attr = DS.attr;
-    App.Contributor = DS.Model.extend({
+    App.Make = DS.Model.extend({
         label: attr(),
         canonical_label: attr(),
         name: attr()
     });
 
-    App.Contributor.reopenClass({
-        allContributors: [],
+    App.Make.reopenClass({
+        allMakes: [],
         all: function(){
-            this.allContributors = [];
+            this.allMakes = [];
             $.ajax({
                 url: window.location.protocol + "//" + window.location.host + "/app_dev.php/api/v1/makes",
                 dataType: 'json',
                 context: this,
                 success: function(response){
-                    response.makes.forEach(function(contributor){
-                        this.allContributors.addObject(App.Contributor.createRecord(contributor))
+                    response.makes.forEach(function(Make){
+                        this.allMakes.addObject(App.Make.createRecord(Make))
                     }, this)
                 }
             });
-            return this.allContributors;
+            return this.allMakes;
         }
     });
 
