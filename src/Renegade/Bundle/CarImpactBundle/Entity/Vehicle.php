@@ -357,4 +357,28 @@ class Vehicle {
         $types = Vehicle::getTransmissionTypesArray();
         return array_key_exists($type, $types);
     }
+
+    public function serialize()
+    {
+        return array(
+            'id' => $this->id,
+            'year' => $this->year,
+            'engine_size' => $this->engineSize,
+            'transmission' => $this->transmissionType,
+            'transmission_string' => $this->getTransmissionString(),
+            'cylinders' => $this->cylinders,
+            'fuel_type' => $this->fuelType,
+            'fuel_type_string' => $this->getFuelTypeString(),
+            'mileage' => array(
+                'highway' => array(
+                    'mpg' => $this->highwayMpg,
+                    'lph' => $this->highwayLph,
+                ),
+                'city' => array(
+                    'mpg' => $this->cityMpg,
+                    'lph' => $this->cityLph,
+                ),
+            ),
+        );
+    }
 } 
