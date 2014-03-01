@@ -199,6 +199,10 @@ class DataImportCommand extends ContainerAwareCommand {
         // Remove the number from the transmission type
         $record[6] = preg_replace('/\d+$/', '', $record[6]);
 
+        foreach ($record as $key => $value) {
+            $record[$key] = $this->cleanString($value);
+        }
+
         // Check if the transmission/gas are valid
         if (!Vehicle::isValidFuelType($record[7]) || !Vehicle::isValidTransmissionType($record[6])) {
             return false;
@@ -310,5 +314,32 @@ class DataImportCommand extends ContainerAwareCommand {
             $tempFileWrapper->move($savePath, sprintf('failed-%s.txt', $time->format('hisymd')));
             fclose($file);
         }
+    }
+
+    /**
+     * Cleans up a string using some regex patterns
+     *  - Remove whitespace from both ends
+     *  - Change 2+ consecutive spaces into a single space
+     * @param $string
+     * @return mixed
+     */
+    protected function cleanString($string)
+    {
+        $patterns = array(
+            array(
+                'pattern' => '/^\s+|\s+$/',
+                'replace' => ''
+            ),
+            array(
+                'pattern' => '/\s{2,}/',
+                'replace' => ' '
+            )
+        );
+
+        foreach ($patterns as $pattern) {
+            $string = preg_replace($pattern['pattern'], $pattern['replace'], $string);
+        }
+
+        return $string;
     }
 }

@@ -1,0 +1,3 @@
+renegade_car_impact_api_v1_rest:
+  type: rest
+  resource: Renegade\Bundle\CarImpactBundle\Controller\ApiV1Controller

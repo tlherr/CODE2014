@@ -90,4 +90,17 @@ class Model {
     {
         return $this->make;
     }
+
+    /**
+     * @return array
+     */
+    public function serialize()
+    {
+        return array(
+            'id' => $this->id,
+            'make_id' => $this->getMake()->getId(),
+            'canonical_label' => $this->canonicalLabel,
+            'label' => $this->label,
+        );
+    }
 }

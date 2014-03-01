@@ -69,4 +69,16 @@ class Make {
     {
         return $this->canonicalLabel;
     }
-} 
+
+    /**
+     * @return array
+     */
+    public function serialize()
+    {
+        return array(
+            'id' => $this->id,
+            'canonical_label' => $this->canonicalLabel,
+            'label' => $this->label,
+        );
+    }
+}
