@@ -7,23 +7,22 @@ namespace Renegade\Bundle\CarImpactBundle\Entity;
  * @package Renegade\Bundle\CarImpactBundle\Entity
  */
 class Vehicle {
-    const FUEL_TYPE_GASOLINE = 1;
-    const FUEL_TYPE_DIESEL = 2;
-    const FUEL_TYPE_PREMIUM_GASOLINE = 3;
-    const FUEL_TYPE_ETHANOL = 4;
+    const FUEL_TYPE_GASOLINE = 'X';
+    const FUEL_TYPE_DIESEL = 'D';
+    const FUEL_TYPE_PREMIUM_GASOLINE = 'Z';
+    const FUEL_TYPE_ETHANOL = 'E';
+    const FUEL_TYPE_NATURAL_GAS = 'N';
 
-    const TRANSMISSION_MANUAL = 'm';
-    const TRANSMISSION_AUTO = 'a';
+    const TRANSMISSION_AUTOMATED_MANUAL = 'AM';
+    const TRANSMISSION_AUTOMATIC_SELECT = 'AS';
+    const TRANSMISSION_VARIABLE = 'AV';
+    const TRANSMISSION_MANUAL = 'M';
+    const TRANSMISSION_AUTOMATIC = 'A';
 
     /**
      * @var int
      */
     protected $id;
-
-    /**
-     * @var Make
-     */
-    protected $make;
 
     /**
      * @var Model
@@ -39,6 +38,11 @@ class Vehicle {
      * @var double
      */
     protected $engineSize;
+
+    /**
+     * @var bool
+     */
+    protected $highOutputEngine;
 
     /**
      * @var integer
@@ -75,6 +79,12 @@ class Vehicle {
      */
     protected $highwayLph;
 
+    function __construct()
+    {
+        $this->highOutputEngine = false;
+    }
+
+
     /**
      * @param int $id
      */
@@ -89,22 +99,6 @@ class Vehicle {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param \Renegade\Bundle\CarImpactBundle\Entity\Make $make
-     */
-    public function setMake($make)
-    {
-        $this->make = $make;
-    }
-
-    /**
-     * @return \Renegade\Bundle\CarImpactBundle\Entity\Make
-     */
-    public function getMake()
-    {
-        return $this->make;
     }
 
     /**
@@ -267,6 +261,21 @@ class Vehicle {
         return $this->highwayMpg;
     }
 
+    /**
+     * @param boolean $highOutputEngine
+     */
+    public function setHighOutputEngine($highOutputEngine)
+    {
+        $this->highOutputEngine = $highOutputEngine;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getHighOutputEngine()
+    {
+        return $this->highOutputEngine;
+    }
 
     /**
      * Return the string value of the current fuel type
@@ -302,10 +311,11 @@ class Vehicle {
     static public function getFuelTypesArray()
     {
         return array(
-            self::GASOLINE => 'Gasoline',
-            self::DIESEL => 'Diesel',
-            self::PREMIUM_GASOLINE => 'Premium Gasoline',
-            self::ETHANOL => 'Ethanol',
+            self::FUEL_TYPE_GASOLINE => 'Gasoline',
+            self::FUEL_TYPE_PREMIUM_GASOLINE => 'Premium Gasoline',
+            self::FUEL_TYPE_DIESEL => 'Diesel',
+            self::FUEL_TYPE_ETHANOL => 'Ethanol',
+            self::FUEL_TYPE_NATURAL_GAS => 'Natural Gas',
         );
     }
 
@@ -317,8 +327,34 @@ class Vehicle {
     static public function getTransmissionTypesArray()
     {
         return array(
-            self::TRANSMISSION_AUTO => 'Automatic',
+            self::TRANSMISSION_AUTOMATIC => 'Automatic',
             self::TRANSMISSION_MANUAL => 'Manual',
+            self::TRANSMISSION_VARIABLE => 'Continuously Variable',
+            self::TRANSMISSION_AUTOMATIC_SELECT => 'Automatic with Select Shift',
+            self::TRANSMISSION_AUTOMATED_MANUAL => 'Automated Manual',
         );
+    }
+
+    /**
+     * Check if specified fuel type is valid
+     * @param $type
+     * @return bool
+     */
+    static public function isValidFuelType($type)
+    {
+        $types = Vehicle::getFuelTypesArray();
+        return array_key_exists($type, $types);
+    }
+
+    /**
+     * Check if the specified transmission type is valid
+     *
+     * @param $type
+     * @return bool
+     */
+    static public function isValidTransmissionType($type)
+    {
+        $types = Vehicle::getTransmissionTypesArray();
+        return array_key_exists($type, $types);
     }
 } 

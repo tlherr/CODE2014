@@ -18,6 +18,11 @@ class Make {
     protected $label;
 
     /**
+     * @var string
+     */
+    protected $canonicalLabel;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -47,5 +52,21 @@ class Make {
     public function getLabel()
     {
         return $this->label;
+    }
+
+    /**
+     * @param string $canonicalLabel
+     */
+    public function setCanonicalLabel($canonicalLabel)
+    {
+        $this->canonicalLabel = $canonicalLabel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonicalLabel()
+    {
+        return $this->canonicalLabel;
     }
 } 
