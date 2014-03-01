@@ -1,0 +1,4 @@
+renegade_car_impact:
+    resource: "@RenegadeCarImpactBundle/Resources/config/routing.yml"
+    prefix:   /
+

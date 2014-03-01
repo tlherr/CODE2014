@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Renegade\Bundle\CarImpactBundle\Entity\Vehicle" table="vehicle">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="year" type="integer" />
+        <field name="engineSize" column="engine_size" type="decimal" precision="3" scale="1"  />
+        <field name="cylinders" column="cylinders" type="integer" />
+        <field name="transmissionType" column="transmission_type" type="string" length="1" />
+        <field name="fuelType" column="fuel_type" type="integer" />
+        <field name="cityMpg" column="mpg_city" type="integer" />
+        <field name="highwayMpg" column="mpg_highway" type="integer" />
+        <field name="cityLph" column="lph_city" type="decimal" precision="3" scale="2" />
+        <field name="highwayLph" column="lph_highway" type="decimal" precision="3" scale="2" />
+
+        <many-to-one target-entity="Renegade\Bundle\CarImpactBundle\Entity\Make" field="make">
+            <join-column name="make_id" />
+        </many-to-one>
+
+        <many-to-one target-entity="Renegade\Bundle\CarImpactBundle\Entity\Model" field="model">
+            <join-column name="model_id" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

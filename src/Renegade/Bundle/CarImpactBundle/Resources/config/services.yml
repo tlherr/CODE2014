@@ -1,0 +1,7 @@
+parameters:
+#    renegade_car_impact.example.class: Renegade\Bundle\CarImpactBundle\Example
+
+services:
+#    renegade_car_impact.example:
+#        class: %renegade_car_impact.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
