@@ -5,6 +5,8 @@ require 'breakpoint'
 
 # Set this to the root of your project when deployed:
 http_path = "/"
+http_fonts_path = "bundles/renegadecarimpactbundle/fonts"
+http_images_path = "bundles/renegadecarimpactbundle/images"
 css_dir = "public/css"
 sass_dir = "sass"
 images_dir = "public/images"
