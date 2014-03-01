@@ -18,4 +18,19 @@ class VehicleRepository extends EntityRepository
             'fuelType' => $vehicle->getFuelType(),
         ));
     }
+    public function getVehiclesQuery(Model $model, $filter = '')
+    {
+        $qb = $this->createQueryBuilder('v')
+            ->where('v.model = :model')
+            ->setParameter('model', $model);
+
+        if (!empty($filter)) {
+            $filter = StringHelpers::getCanonical($filter);
+            $qb->andWhere('v.canonicalLabel LIKE :filter')
+                ->setParameter('filter', sprintf('%%%s%%', $filter))
+            ;
+        }
+
+        return $qb->getQuery();
+    }
 } 
