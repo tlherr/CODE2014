@@ -1,0 +1,19 @@
+
+
+.main {
+  @include grid-span(4, 2);
+
+  @include breakpoint($screen-sm) {
+    @include grid-span(6, 2);
+  }
+
+  @include breakpoint($screen-md) {
+    @include grid-span(10, 2);
+  }
+
+  @include breakpoint($screen-lg) {
+    @include grid-span(22, 2);
+  }
+
+}
+

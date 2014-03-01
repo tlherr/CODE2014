@@ -1,5 +1,17 @@
 {% extends 'RenegadeCarImpactBundle::base.html.twig' %}
 
 {% block body_container_main %}
-Hello
+
+    <div class="form-group">
+        <input class="typeahead" id="vehicle-make-typeahead" type="text" placeholder="Vehicle Make (ex Toyota)">
+    </div>
+
+    <div class="form-group">
+        <input class="typeahead" id="vehicle-model-typeahead" type="text" placeholder="Vehicle Model (ex Corolla)">
+    </div>
+
+    <div class="form-group">
+        <a href="#" class="btn btn-primary">Add Vehicle</a>
+    </div>
+
 {% endblock %}
