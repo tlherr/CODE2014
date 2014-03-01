@@ -18,6 +18,16 @@ class Model {
     protected $label;
 
     /**
+     * @var Make
+     */
+    protected $make;
+
+    /**
+     * @var string
+     */
+    protected $canonicalLabel;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -48,4 +58,36 @@ class Model {
     {
         return $this->label;
     }
-} 
+
+    /**
+     * @param string $canonicalLabel
+     */
+    public function setCanonicalLabel($canonicalLabel)
+    {
+        $this->canonicalLabel = $canonicalLabel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonicalLabel()
+    {
+        return $this->canonicalLabel;
+    }
+
+    /**
+     * @param \Renegade\Bundle\CarImpactBundle\Entity\Make $make
+     */
+    public function setMake($make)
+    {
+        $this->make = $make;
+    }
+
+    /**
+     * @return \Renegade\Bundle\CarImpactBundle\Entity\Make
+     */
+    public function getMake()
+    {
+        return $this->make;
+    }
+}

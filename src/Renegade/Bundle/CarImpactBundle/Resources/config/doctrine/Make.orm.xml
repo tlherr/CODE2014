@@ -9,7 +9,8 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="label" column="label" type="string"/>
+        <field name="label" column="label" type="string" length="32" />
+        <field name="canonicalLabel" column="canonical_label" type="string" length="32" />
 
     </entity>
 </doctrine-mapping>
