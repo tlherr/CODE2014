@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mark
- * Date: 2014-02-28
- * Time: 8:26 PM
- */
 
 namespace Renegade\Bundle\CarImpactBundle\Command;
 
