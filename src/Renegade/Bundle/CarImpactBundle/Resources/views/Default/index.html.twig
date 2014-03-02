@@ -14,12 +14,19 @@
             </div>
         </section>
         <section id="vehicle-listing">
+            <ul id="vehicle-list">
 
+            </ul>
         </section>
     </section>
     <script type="text/template" id="vehicle-template">
-        <div class="vehicle">
-            <span><%- id %></span>
+        <div class="vehicle" data-highway-mpg="<%- mileage.city.mpg %>">
+            <span class='id'><%- year %></span>
+            <span><%- make.label %></span>
+            <span><%- model.label %></span>
+            <span><%- fuel_type_string %></span>
+            <span><%- transmission_type_string %></span>
+            <span>City MPG: <%- mileage.city.mpg %></span>
         </div>
     </script>
 {% endblock %}
