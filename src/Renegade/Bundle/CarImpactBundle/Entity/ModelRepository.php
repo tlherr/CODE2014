@@ -10,7 +10,8 @@ class ModelRepository extends EntityRepository {
     {
         $qb = $this->createQueryBuilder('m')
             ->where('m.make = :make')
-            ->setParameter('make', $make);
+            ->setParameter('make', $make)
+            ->orderBy('m.canonicalLabel', 'ASC');
 
         if (!empty($filter)) {
             $filter = StringHelpers::getCanonical($filter);

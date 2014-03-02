@@ -12,7 +12,8 @@ class MakeRepository extends EntityRepository {
      */
     public function getMakeQuery($filter = '')
     {
-        $qb = $this->createQueryBuilder('m');
+        $qb = $this->createQueryBuilder('m')
+            ->orderBy('m.canonicalLabel');
 
         if (!empty($filter)) {
             $filter = StringHelpers::getCanonical($filter);
