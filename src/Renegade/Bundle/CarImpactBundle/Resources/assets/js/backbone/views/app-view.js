@@ -8,31 +8,48 @@ var app = app || {};
         el: '#vehicle-app',
         events: {
             'change #make-entry': 'makeChanged',
-            'change #model-entry': 'modelChanged'
+            'change #model-entry': 'modelChanged',
+            'change #year-entry': 'yearChanged'
         },
         currentMake: null,
         currentModel: null,
+        currentYear: null,
         initialize: function () {
             this.$list = this.$('#vehicle-list');
             this.$makeEntry = this.$('#make-entry');
             this.$modelEntry = this.$('#model-entry');
-            this.$yearEntry = this.$('#year-entry').prop('disabled', true);
+            this.$yearEntry = this.$('#year-entry');
             this.$vehicleSelectList = this.$('#vehicle-select-list');
 
             this.$makeEntry.select2();
             this.$modelEntry.select2();
+            this.$yearEntry.select2();
 
-            this.$modelEntry.prop('disabled', true);
+            this.$vehicleSelectList.on('load:vehicle', this.loadVehicle);
+            this.$modelEntry.select2('enable', false);
+            this.$yearEntry.select2('enable', false);
 
             this.listenTo(app.vehicles, 'add', this.addVehicle);
+
             this.listenTo(app.models, 'reset', this.modelsReset);
             this.listenTo(app.models, 'add', this.modelAdded);
+            this.listenTo(app.modelYears, 'reset', this.yearsReset);
+            this.listenTo(app.modelYears, 'add', this.yearAdded);
+
+            this.listenTo(app.filteredVehicles, 'reset', this.filteredVehiclesReset);
 
             this.loadMakes();
-            this.loadTestVehicles();
             this.render();
         },
         render: function () {},
+        loadVehicle: function (obj) {
+            var newVehicle = new app.Vehicle({id: obj.id});
+            newVehicle.fetch({
+                success: function (obj) {
+                    app.vehicles.add(obj);
+                }
+            });
+        },
         addVehicle: function (vehicle) {
             var vehicleView = new app.VehicleView({ model: vehicle });
             this.$list.append(vehicleView.render().el);
@@ -47,51 +64,90 @@ var app = app || {};
                 }
             });
         },
-        loadVehiclesForMakeAndModel: function () {
-
-        },
-        loadTestVehicles: function() {
-            var i,
-                vehicles = [150987, 150988, 150989, 150990, 150991, 150992],
-                newVehicle,
-                that = this,
-                successCallback = function (obj) {
-                    var vehicleView = new app.VehicleSelectView({ model: obj});
-                    that.$vehicleSelectList.append(vehicleView.render().el);
-                };
-
-            for (i in vehicles) {
-                newVehicle = new app.Vehicle({id: vehicles[i]});
-                newVehicle.fetch({
-                    success: successCallback
+        loadFilteredVehicles: function () {
+            var that = this;
+            if (this.currentModel && this.currentYear) {
+                app.filteredVehicles.fetchFiltered(this.currentModel, this.currentYear, {
+                    success: function () {
+                        app.filteredVehicles.forEach(function(obj) {
+                            var vehicleView = new app.VehicleSelectView({model: obj});
+                            vehicleView.on('load:vehicle', that.loadVehicle);
+                            that.$vehicleSelectList.append(vehicleView.render().el);
+                        });
+                    }
                 });
             }
         },
+        filteredVehiclesReset: function () {
+            this.$vehicleSelectList.find('li').off('load:vehicle').remove();
+        },
+        clearVehicleSelect: function () {
+            app.filteredVehicles.reset();
+        },
         makeChanged: function(e) {
-            if (e.val === "-1") {
-                this.modelsReset();
+            var newValue = this.$makeEntry.val();
+            this.clearVehicleSelect();
+            this.modelsReset();
+            if (newValue === "0") {
+                this.currentMake = false;
             } else {
-                this.loadModels(e.val);
+                this.currentMake = newValue;
+                this.loadModels();
             }
         },
         modelChanged: function(e) {
-            this.$yearEntry.prop('disabled', false);
-            this.$yearEntry.find('option:selected').prop('selected', false);
+            var newValue = this.$modelEntry.val();
+            this.clearVehicleSelect();
+            this.yearsReset();
+            if (newValue === "0") {
+                this.currentModel = false;
+            } else {
+                this.currentModel = newValue;
+                this.loadYears();
+            }
         },
-        loadModels: function(makeId) {
+        yearChanged: function (obj) {
+            var newValue = this.$yearEntry.val();
+            this.clearVehicleSelect();
+            if (newValue === "0") {
+                this.currentYear = false;
+            } else {
+                this.currentYear = newValue;
+                this.loadFilteredVehicles();
+            }
+        },
+        loadModels: function() {
             var that = this;
-            app.models.fetchMake(makeId, {
+            app.models.fetchMake(this.currentMake, {
                 success: function () {
-                    that.$modelEntry.prop('disabled', false);
+                    that.$modelEntry.select2('enable', true);
                 }
             });
         },
-        modelAdded: function(object) {
-            ($('<option>', { value: object.get('id') }).addClass('model-option').text(object.get('label'))).appendTo(this.$modelEntry);
+        loadYears: function() {
+            var that = this;
+            app.modelYears.fetchModelYears(this.currentModel, {
+                success: function () {
+                    that.$yearEntry.select2('enable', true);
+                }
+            });
+        },
+        modelAdded: function (object) {
+            ($('<option>', { value: object.get('id') }).addClass('loaded-option').text(object.get('label'))).appendTo(this.$modelEntry);
+        },
+        yearAdded: function (object) {
+            ($('<option>', { value: object.get('year') }).addClass('loaded-option').text(object.get('year'))).appendTo(this.$yearEntry);
         },
         modelsReset: function() {
-            this.$modelEntry.find($('option.model-option')).remove();
-            this.$modelEntry.select2().prop('disabled', true);
+            this.$modelEntry.select2('val', 0);
+            this.$modelEntry.select2('enable', false);
+            this.$modelEntry.find('option.loaded-option').remove();
+            this.yearsReset();
+        },
+        yearsReset: function() {
+            this.$yearEntry.select2('val', 0);
+            this.$yearEntry.select2('enable', false);
+            this.$yearEntry.find('option.loaded-option').remove();
         }
     });
 })(jQuery);

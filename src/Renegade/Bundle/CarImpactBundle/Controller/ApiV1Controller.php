@@ -78,9 +78,9 @@ class ApiV1Controller extends FOSRestController {
         return $this->handleView($view);
     }
 
-    public function getModelVehiclesAction(Model $model)
+    public function getVehiclesYearAction(Model $model, $year)
     {
-        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
+        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model, 'year' => $year));
         $data = array();
 
         /**
@@ -93,6 +93,28 @@ class ApiV1Controller extends FOSRestController {
         $view = $this->view($data, 200);
         return $this->handleView($view);
     }
+
+    public function getModelYearsAction(Model $model)
+    {
+        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
+        $data = array();
+        $yearsSeen = array();
+        /**
+         * @var Vehicle $vehicle
+         */
+        foreach ($vehicles as $vehicle) {
+            if (!array_key_exists($vehicle->getYear(), $yearsSeen)) {
+                $yearsSeen[$vehicle->getYear()] = true;
+                $data[] = array(
+                    'year' => $vehicle->getYear(),
+                );
+            }
+        }
+
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
 
     public function getModelModifiersAction(Request $request, Model $model)
     {
