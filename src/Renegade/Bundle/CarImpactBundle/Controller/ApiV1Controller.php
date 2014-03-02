@@ -98,12 +98,17 @@ class ApiV1Controller extends FOSRestController {
     {
         $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
         $data = array();
-
+        $yearsSeen = array();
         /**
          * @var Vehicle $vehicle
          */
         foreach ($vehicles as $vehicle) {
-            $data[] = $vehicle->getYear();
+            if (!array_key_exists($vehicle->getYear(), $yearsSeen)) {
+                $yearsSeen[$vehicle->getYear()] = true;
+                $data[] = array(
+                    'year' => $vehicle->getYear(),
+                );
+            }
         }
 
         $view = $this->view($data, 200);
