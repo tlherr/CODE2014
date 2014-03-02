@@ -1,22 +1,29 @@
 div.hamburger {
-
-  position: absolute;
-  left: 75px;
-  overflow-y: auto;                               // Allows menu items to scroll within the menu if they get that far
-  z-index: 9999;                                  // "Magic Number" to make sure the menu stays on top of everything
-
-  & menu  {
-    position: relative;
-    left: -100%;
-    padding: 0;
-    margin: 0;
-    transition: 1s ease-in-out;
-  }
-
-  &:hover {
-    menu {
-      @include transform(translate(100%, 0px));
-      transition: 1s ease-in-out;
+//  position: absolute;
+//  left: 75px;
+//  overflow-y: auto;                               // Allows menu items to scroll within the menu if they get that far
+//  z-index: 9999;                                  // "Magic Number" to make sure the menu stays on top of everything
+//
+//  & menu  {
+//    position: relative;
+//    left: -100%;
+//    padding: 0;
+//    margin: 0;
+//    transition: 1s ease-in-out;
+//  }
+//
+//  &:hover {
+//    menu {
+//      @include transform(translate(100%, 0px));
+//      transition: 1s ease-in-out;
+//    }
+//  }
+  button {
+    padding-right: 2em;
+    .glyphicon {
+      position: absolute;
+      right: 4px;
+      top: 8px;
     }
   }
 }

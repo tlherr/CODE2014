@@ -1,26 +1,41 @@
 
-ul#vehicle-list {
+#vehicle-list {
   margin:0px;
   padding:0px;
 
-  li.vehicle {
+  li {
     list-style: none;
+  }
+
+  .vehicle {
     padding: 0px;
-    display: inline-block;
     background-color:#5bc0de;
-    color:white;
+    color: white;
     border-radius: 10px;
-    padding: 2.5%;
-    margin: 2.5%;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    padding-left: 4em;
 
-    @include breakpoint($bp2) {
-      width: 44%;
+    border: 1px solid #333;
+
+    .data-year {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0.3em;
+      border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: darken(#5bc0de, 10%);
+      border-left: 0;
+      border-top: 0;
+      border-right: 1px solid white;
+      border-bottom: 1px solid white;
     }
 
-    @include breakpoint(max-width $bp2) {
-      width: 95%;
+    .data-label {
+      display: block;
     }
-
-    vertical-align: top;
   }
 }
