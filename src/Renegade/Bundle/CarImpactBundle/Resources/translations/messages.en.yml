@@ -1,0 +1,16 @@
+site_name: My Car's Impact
+choose_make: Choose Vehicle Make
+choose_model: Choose Vehicle Model
+choose_year: Choose Vehicle Year
+
+toggle_navigation: Toggle navigation
+about: About
+home: Home
+
+fuel_economy_city_mpg: Fuel Economy (City MPG)
+fuel_economy_highway_mpg: Fuel Economy (Highway MPG)
+transmission_type: Transmission Type
+fuel_type: Fuel Type
+emissions: Emissions
+year: Year
+engine_size: Engine Size
