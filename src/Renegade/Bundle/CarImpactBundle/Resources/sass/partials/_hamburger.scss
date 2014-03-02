@@ -27,3 +27,21 @@ div.hamburger {
     }
   }
 }
+
+.hamburger {
+  menu {
+    padding: 0px;
+  }
+}
+
+.filters-container {
+  width: 100%;
+}
+
+button[data-sort-order="asc"] {
+  @extend .btn-success;
+}
+
+button[data-sort-order="desc"] {
+  @extend .btn-danger;
+}

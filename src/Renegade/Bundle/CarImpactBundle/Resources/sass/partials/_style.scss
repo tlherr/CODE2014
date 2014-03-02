@@ -1,13 +1,15 @@
 
-button[data-sort-order="asc"] {
-  @extend .btn-success;
-}
 
-button[data-sort-order="desc"] {
-  @extend .btn-danger;
-}
+.navbar-fixed-bottom {
+  padding: 15px;
 
+  .container-left {
+    float:left;
+    padding-left:20px;
+  }
 
-section#vehicle-listing {
-  margin-top: 35px;
+  .container-right {
+    float:right;
+    padding-right:20px;
+  }
 }

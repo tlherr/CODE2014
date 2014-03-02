@@ -3,8 +3,9 @@ renegade_car_impact_homepage:
     defaults: { _controller: RenegadeCarImpactBundle:Default:index }
 
 renegade_car_impact_about:
-    pattern: /about
+    pattern:  /about
     defaults: { _controller: RenegadeCarImpactBundle:Default:about }
+
 
 renegade_car_impacty_api_index:
     pattern: /api/v1/
