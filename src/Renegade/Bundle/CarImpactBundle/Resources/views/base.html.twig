@@ -15,7 +15,8 @@
         {% endblock head_meta %}
             <title>{% block head_title %}{% endblock %}</title>
         {% block head_css %}
-            {% stylesheets '@RenegadeCarImpactBundle/Resources/assets/generated/css/screen.css' %}
+            {% stylesheets
+                '@RenegadeCarImpactBundle/Resources/assets/generated/css/screen.css' %}
                 <link rel="stylesheet"  href="{{ asset_url }}" >
             {% endstylesheets %}
         {% endblock %}
@@ -62,11 +63,11 @@
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/views/app-view.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/views/vehicle-view.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/models/vehicle.js'
-                '@RenegadeCarImpactBundle/Resources/assets/js/backbone/collections/vehicles.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/models/make.js'
+                '@RenegadeCarImpactBundle/Resources/assets/js/backbone/collections/makes.js'
+                '@RenegadeCarImpactBundle/Resources/assets/js/backbone/collections/vehicles.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/app.js'
-                '@RenegadeCarImpactBundle/Resources/assets/bower/typeahead.js/dist/typeahead.bundle.js'
-                '@RenegadeCarImpactBundle/Resources/assets/js/typeahead.js'
+                '@RenegadeCarImpactBundle/Resources/assets/bower/select2/select2.js'
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}

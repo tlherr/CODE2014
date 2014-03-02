@@ -9,8 +9,8 @@
     "jquery": "1.11.0",
     "modernizr": "2.7.1",
     "bootstrap": "3.1.1",
-    "backbone": null,
-    "typeahead.js": "~0.10.1"
+    "backbone": "~1.1.2",
+    "select2": "~3.4.5"
   },
   "description": "UI Elements for CarImpact Bundle",
   "license": "MIT",
