@@ -13,7 +13,7 @@ var app = app || {};
 
             // data-highway-mpg="<%- mileage.highway.mpg %>" data-city-mpg="<%- mileage.city.mpg %>" data-transmission="<%- transmission %>" data-fuel="<%- fuel %>" data-year="<%- year %>" data-engine-size="<%- engine_size %>"
             var mileage = this.model.get('mileage');
-            this.$el.addClass('sortable vehicle');
+            this.$el.addClass('sortable');
 
             this.$el.attr('data-highway-mpg', mileage.highway.mpg);
             this.$el.attr('data-highway-lph', mileage.highway.lph);
