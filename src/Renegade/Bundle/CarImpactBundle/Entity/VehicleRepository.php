@@ -16,6 +16,7 @@ class VehicleRepository extends EntityRepository
             'cylinders' => $vehicle->getCylinders(),
             'transmissionType' => $vehicle->getTransmissionType(),
             'fuelType' => $vehicle->getFuelType(),
+            'modifiers' => $vehicle->getModifiers()
         ));
     }
     public function getVehiclesQuery(Model $model, $filter = '')

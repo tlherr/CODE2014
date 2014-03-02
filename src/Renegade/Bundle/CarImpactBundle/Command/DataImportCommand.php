@@ -99,7 +99,10 @@ class DataImportCommand extends ContainerAwareCommand {
                 $newVehicle->setEngineSize($record[4]);
                 $newVehicle->setCylinders($record[5]);
 
-                // Is this a "special" model
+                // Get and add any modifiers to the vehicle type
+                $mods = $this->getModelModifiers($record[2]);
+                $newVehicle->setModifiers(implode(',', $mods));
+
                 $newVehicle->setTransmissionType($record[6]);
                 $newVehicle->setFuelType($record[7]);
                 $newVehicle->setCityLph($record[8]);
@@ -107,7 +110,8 @@ class DataImportCommand extends ContainerAwareCommand {
                 $newVehicle->setCityMpg($record[10]);
                 $newVehicle->setHighwayMpg($record[11]);
 
-                if (preg_match('/\s#$/', $record[2])) {
+                // Is this a "special" model (has ' #' on the end)
+                if (preg_match('/#$/', $record[2])) {
                     $newVehicle->setHighOutputEngine(true);
                 }
 
@@ -160,7 +164,8 @@ class DataImportCommand extends ContainerAwareCommand {
      */
     protected function getOrCreateModel(Make $make, $model)
     {
-        $model = preg_replace('/\s#$/', '', $model);
+        // Remove the "Special" bit off the end
+        $model = $this->cleanupModelName($model);
         $canonical = StringHelpers::getCanonical($model);
 
         // If this make doesn't exist, we create one and return it;
@@ -341,5 +346,34 @@ class DataImportCommand extends ContainerAwareCommand {
         }
 
         return $string;
+    }
+
+    /**
+     * Get the model modifiers from the string
+     * @param $string
+     * @return mixed
+     */
+    protected function getModelModifiers($string)
+    {
+        preg_match_all(sprintf('#\b(%s)\b#', implode('|', $this->getModelModiferArray())), $string, $matches);
+        sort($matches[0]);
+        return $matches[0];
+    }
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    protected function cleanupModelName($string)
+    {
+        $string = str_replace($this->getModelModiferArray(), '', $string);
+        $string = preg_replace('/\s+#$/', '', $string);
+        $string = $this->cleanString($string);
+        return $string;
+    }
+
+    protected function getModelModiferArray()
+    {
+        return array('4WD', '4X4', 'AWD', 'CNG', 'FFV', 'NGV');
     }
 }
