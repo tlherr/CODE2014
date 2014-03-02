@@ -31,15 +31,13 @@ class ApiV1Controller extends FOSRestController {
     {
         $filter = $request->query->get('q', '');
         $makes = $this->getMakeRepository()->getMakeQuery($filter)->execute();
-        $data = array(
-            'makes' => array()
-        );
+        $data = array();
 
         /**
          * @var Make $make
          */
         foreach ($makes as $make) {
-            $data['makes'][] = $make->serialize();
+            $data[] = $make->serialize();
         }
 
         $view = $this->view($data, 200);
@@ -48,21 +46,13 @@ class ApiV1Controller extends FOSRestController {
 
     public function getMakeAction(Make $make)
     {
-        $data = array(
-            'make' => $make->serialize()
-        );
-
-        $view = $this->view($data, 200);
+        $view = $this->view($make->serialize(), 200);
         return $this->handleView($view);
     }
 
     public function getModelAction(Model $model)
     {
-        $data = array(
-            'model' => $model->serialize(),
-        );
-
-        $view = $this->view($data, 200);
+        $view = $this->view($model->serialize(), 200);
         return $this->handleView($view);
     }
 
@@ -91,24 +81,33 @@ class ApiV1Controller extends FOSRestController {
     public function getModelVehiclesAction(Model $model)
     {
         $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
-        $data = array(
-            'vehicles' => array(),
-        );
+        $data = array();
 
         /**
          * @var Vehicle $vehicle
          */
         foreach ($vehicles as $vehicle) {
-            $data['vehicles'][] = $vehicle->serialize();
+            $data[] = $vehicle->serialize();
         }
 
         $view = $this->view($data, 200);
         return $this->handleView($view);
     }
+
     public function getModelModifiersAction(Request $request, Model $model)
     {
         $data = $this->getVehicleRepository()->getVehicleModifiersForModel($model);
         $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @param Vehicle $vehicle
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getVehicleAction(Vehicle $vehicle)
+    {
+        $view = $this->view($vehicle->serialize(), 200);
         return $this->handleView($view);
     }
 

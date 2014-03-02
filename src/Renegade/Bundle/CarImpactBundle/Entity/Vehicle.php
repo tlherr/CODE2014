@@ -362,10 +362,12 @@ class Vehicle {
     {
         return array(
             'id' => $this->id,
+            'make' => $this->getModel()->getMake()->serialize(),
+            'model' => $this->getModel()->serialize(),
             'year' => $this->year,
             'engine_size' => $this->engineSize,
             'transmission' => $this->transmissionType,
-            'transmission_string' => $this->getTransmissionString(),
+            'transmission_type_string' => $this->getTransmissionString(),
             'cylinders' => $this->cylinders,
             'fuel_type' => $this->fuelType,
             'fuel_type_string' => $this->getFuelTypeString(),
