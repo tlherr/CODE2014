@@ -6,6 +6,9 @@ renegade_car_impact_about:
     pattern:  /about
     defaults: { _controller: RenegadeCarImpactBundle:Default:about }
 
+renegade_car_impact_infographic:
+    pattern:  /infographic/{vehicle}
+    defaults: { _controller: RenegadeCarImpactBundle:Default:infographic }
 
 renegade_car_impacty_api_index:
     pattern: /api/v1/

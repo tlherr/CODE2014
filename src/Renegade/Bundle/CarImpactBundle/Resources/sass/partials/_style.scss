@@ -3,13 +3,15 @@
 .navbar-fixed-bottom {
   padding: 15px;
 
-  .container-left {
-    float:left;
-    padding-left:20px;
-  }
+  @include breakpoint($bp2) {
+    .container-left {
+      float:left;
+      padding-left:20px;
+    }
 
-  .container-right {
-    float:right;
-    padding-right:20px;
+    .container-right {
+      float:right;
+      padding-right:20px;
+    }
   }
 }

@@ -1,0 +1,42 @@
+{% extends 'RenegadeCarImpactBundle::base.html.twig' %}
+{% set page_title = "Infographic"|trans() %}
+{% set active_section = "infographic" %}
+{% set bp_body_attributes = 'class="infographic-page"' %}
+
+{% block body_container_main %}
+    <h3>Here is some information about your car you might find interesting!</h3>
+
+    <div class="footnotes">
+        <div class="reference">
+            <sup>1</sup> <a href="http://www.tc.gc.ca/eng/road-menu.htm">http://www.tc.gc.ca/eng/road-menu.htm</a>
+        </div>
+
+        <div class="reference">
+            <sup>2</sup> <a href="http://www.statcan.gc.ca/tables-tableaux/sum-som/l01/cst01/trade14a-eng.htm">http://www.statcan.gc.ca/tables-tableaux/sum-som/l01/cst01/trade14a-eng.htm</a>
+        </div>
+
+        <div class="reference">
+            <sup>3</sup> <a href="http://oee.nrcan.gc.ca/publications/statistics/cvs08/chapter2.cfm?attr=0">http://oee.nrcan.gc.ca/publications/statistics/cvs08/chapter2.cfm?attr=0</a>
+        </div>
+    </div>
+
+    <div id="animation-content-wrapper">
+
+        <div id="introduction">
+            <h2 id="f1">Canada has nearly 900,000 kilometres of road — enough to circle the globe 22 times! <sup>1</sup></h2>
+            <h2 id="f2">In 2010 there were 20,267,982 registered vehicles weighing less than 4,500 kilograms in Canada <sup>2</sup></h2>
+            <h2 id="f3">The average Canadian drove 15,200 Kilometers per year in 2008 <sup>3</sup></h2>
+        </div>
+
+        <div class="your-car">
+
+            <h2 id="f4">Assuming a trip of 15,200 KM...</h2>
+            <h2 id="f5">Your {{ vehicle.year }} {{ vehicle.model.make.label }} {{ vehicle.model.label }} would...</h2>
+            <h2 id="f6">produce {{ calc.emissions|number_format(2, '.', ',') }} grams of CO<sub>2</sub></h2>
+            <h2 id="f7">use {{ calc.fuel_used|number_format(2, '.', ',') }} L of fuel</h2>
+            <h2 id="f8">at a cost of ${{ calc.fuel_cost|number_format(2, '.', ',') }}, at $1.20/L </h2>
+        </div>
+
+    </div>
+
+{% endblock %}

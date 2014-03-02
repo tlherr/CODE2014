@@ -10,6 +10,7 @@ use Renegade\Bundle\CarImpactBundle\Entity\ModelRepository;
 use Renegade\Bundle\CarImpactBundle\Entity\Vehicle;
 use Renegade\Bundle\CarImpactBundle\Entity\VehicleRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ApiV1Controller extends FOSRestController {
     /**
@@ -99,6 +100,9 @@ class ApiV1Controller extends FOSRestController {
     {
         $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
         $data = array();
+        /**
+         * @var Vehicle $vehicle
+         */
         foreach ($vehicles as $vehicle) {
             $data[] = $vehicle->serialize();
         }
@@ -196,7 +200,10 @@ class ApiV1Controller extends FOSRestController {
      */
     public function getVehicleAction(Vehicle $vehicle)
     {
-        $view = $this->view($vehicle->serialize(), 200);
+        $vehicleData = $vehicle->serialize();
+        $vehicleData['info_url'] = $this->generateUrl('renegade_car_impact_infographic', array('vehicle' => $vehicle->getId()), UrlGeneratorInterface::ABSOLUTE_PATH);
+
+        $view = $this->view($vehicleData, 200);
         return $this->handleView($view);
     }
 

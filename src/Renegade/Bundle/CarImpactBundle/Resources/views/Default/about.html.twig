@@ -5,21 +5,51 @@
 {% block body_container_main %}
 
     <h2>What is this?</h2>
-    <hr>
 
-    <p>
-        This application was developed with the intention of raising awareness regarding the impact of our vehicles. Not only do they have an environmental impact (Fuel Efficiency/Consumption etc.) but they also have a financial impact to operate.
-        Using <a href="http://data.gc.ca/data/en/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64">data</a> provided by the <a href="http://data.gc.ca">Federal Government of Canada</a> we have created a service that allows you to view and compare various cars to see their environmental and financial impact.
-    </p>
+    <p>Using <a href="http://data.gc.ca/data/en/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64">automobile fuel
+            consumption</a> and emissions data for the last 14 years provided by the <a href="http://data.gc.ca/">Federal
+            Government of Canada</a> we set out to create a service that allows the visitor to view and compare
+        passenger automobile data to see their environmental and financial impacts.</p>
+    <p>This application was developed with the intention of raising awareness about the impact of our automobile usage
+        on Canadians' environment, finances, and productivity.</p>
+    <p>We hoped to achieve these goals by providing a tool that gave vistors the ability to:</p>
+    <ul>
+        <li>Compare fuel consumption and CO2 emissions between vehicle models</li>
+        <li>Calculate the cost of travel using fuel consumption rates and current average gas rates accross Canada</li>
+        <li>Use historical data to graph and show increasing environmental standards for automobiles</li>
+        <li>Outline tangible real-world impacts of oil production based on the visitor's usage</li>
+    </ul>
 
-    <h2>CODE</h2>
-    <hr>
+    <p>In addition, we have created a public web service around the imported data to allow others to easily integrate
+        the data into their own applications.</p>
 
-    <p>
-        Developed in under 72 hours from nothing to functional deployed website what you see before you is the result of the <a href="https://www.canadianopendataexperience.com/">Canadian Open Data Experience</a>. The theme for the 2014 competition was: "<strong>Solving problems and increasing productivity through the use of Open Data</strong>".
-        We believe that the data provided could make vehicles purchases more fuel efficient and cost effective for consumers thus boosting overall economic and environmental productivity.
-    </p>
+    <h2>Web Service</h2>
 
-    <p>The codebase for this website is available <a href="#">here</a>, please feel free to send any questions, comments or pull requests!</p>
+    <h3>GET - Manufactures</h3>
+    <p>/api/v1/makes</p>
+
+    <h3>GET - Manufacturer</h3>
+    <p>/api/v1/makes/:id</p>
+
+    <h3>GET - Models by Manufacturer</h3>
+    <p>/api/v1/makes/:id/models</p>
+
+    <h3>GET - Vehicles by Model</h3>
+    <p>/api/v1/models/:model/vehicles</p>
+
+    <h3>GET - Models</h3>
+    <p>/api/v1/models</p>
+
+    <h3>GET - Model</h3>
+    <p>/api/v1/models/:id</p>
+
+    <h3>GET - Years that model was available</h3>
+    <p>/api/v1/models/:id/years</p>
+
+    <h3>GET - Vehicles available for a model in a year</h3>
+    <p>/api/v1/models/:model/years/:year</p>
+
+    <h3>Get - Vehicle</h3>
+    <p>/api/v1/vehicles/:id</p>
 
 {% endblock %}

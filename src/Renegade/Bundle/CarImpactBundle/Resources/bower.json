@@ -11,7 +11,9 @@
     "bootstrap": "3.1.1",
     "backbone": "~1.1.2",
     "select2": "~3.4.5",
-    "tinysort": "*"
+    "tinysort": "*",
+    "superscrollorama": "~1.0.2",
+    "ScrollMagic": "~1.0.1"
   },
   "description": "UI Elements for CarImpact Bundle",
   "license": "MIT",
@@ -19,5 +21,8 @@
   "ignore": [
     "**/.*",
     "public/bower"
-  ]
+  ],
+  "resolutions": {
+    "jquery": "1.11.0"
+  }
 }
