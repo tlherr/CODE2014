@@ -23,6 +23,27 @@ class Make {
     protected $canonicalLabel;
 
     /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * @param \Renegade\Bundle\CarImpactBundle\Entity\Model $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return \Renegade\Bundle\CarImpactBundle\Entity\Model
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
      * @param int $id
      */
     public function setId($id)

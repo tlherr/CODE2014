@@ -14,5 +14,8 @@
         <field name="label" column="label" type="string" length="64" />
         <field name="canonicalLabel" column="canonical_label" type="string" length="64" />
 
+        <one-to-many target-entity="Renegade\Bundle\CarImpactBundle\Entity\Model" field="model" mapped-by="make">
+        </one-to-many>
+
     </entity>
 </doctrine-mapping>
