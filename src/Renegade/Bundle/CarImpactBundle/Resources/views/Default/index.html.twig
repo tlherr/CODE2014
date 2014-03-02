@@ -37,7 +37,7 @@
         <span><%- model.label %> <%- model.modifiers %></span>
         <span><%- cylinders %> {{ 'cylinder'|trans() }}, <%- engine_size %>L</span>
         <span>(<%- fuel_type_string %>, <%- transmission_type_string %>)</span>
-        <button class="btn btn-success"><span class="glyphicon glyphicon-plus"> Add</button>
+        <button class="btn btn-success add-button"><span class="glyphicon glyphicon-plus"> Add</button>
     </script>
     <script type="text/template" id="vehicle-template">
         <div class="vehicle" data-highway-mpg="<%- mileage.city.mpg %>">
