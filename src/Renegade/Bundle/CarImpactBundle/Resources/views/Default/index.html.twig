@@ -56,22 +56,29 @@
         </section>
     </section>
     <script type="text/template" id="vehicle-select-template">
-        <span><%- make.label %></span>
-        <span><%- model.label %> <%- model.modifiers %></span>
-        <span><%- cylinders %> {{ 'cylinder'|trans() }}, <%- engine_size %>L</span>
-        <span>(<%- fuel_type_string %>, <%- transmission_type_string %>)</span>
-        <button class="btn btn-success add-button"><span class="glyphicon glyphicon-plus"> Add</button>
+        <div class="action">
+            <button class="btn btn-success add-button"><span class="glyphicon glyphicon-plus"> Add</button>
+        </div>
+        <div class="information">
+            <span><%- make.label %></span>
+            <span><%- model.label %> <%- model.modifiers %></span>
+            <span><%- cylinders %> {{ 'cylinder'|trans() }}, <%- engine_size %>L</span>
+            <span>(<%- fuel_type_string %>, <%- transmission_type_string %>)</span>
+        </div>
     </script>
     <script type="text/template" id="vehicle-template">
         <div class="vehicle">
-            <span class='data-year'><%- year %></span>
-            <span class='data-label'><%- make.label %> <%- model.label %> <%- model.modifiers %></span>
-            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
-            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
-            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
-            <span class='data-fuel'><%- fuel_type_string %></span>
-            <span class='data-transmission'><%- transmission_type_string %></span>
-            <span class='data-mileage'>City MPG: <%- mileage.city.mpg %></span>
+            <div class="classifying-information">
+                <span class='data-year'><%- year %></span>
+                <span class='data-label'><%- make.label %> <%- model.label %> <%- model.modifiers %></span>
+                <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
+                <span class='data-fuel'><%- fuel_type_string %></span>
+                <span class='data-transmission'><%- transmission_type_string %></span>
+            </div>
+            <div class="numeric-data">
+                <span class='data-city-mileage'>City MPG: <%- mileage.city.mpg %></span>
+                <span class='data-highway-mileage'>Highway MPG: <%- mileage.highway.mpg %></span>
+            </div>
         </div>
     </script>
 {% endblock %}
