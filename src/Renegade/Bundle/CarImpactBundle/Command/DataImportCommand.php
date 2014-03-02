@@ -95,6 +95,7 @@ class DataImportCommand extends ContainerAwareCommand {
                 // Create the vehicle
                 $newVehicle = new Vehicle();
                 $newVehicle->setYear($record[0]);
+
                 $newVehicle->setModel($model);
                 $newVehicle->setEngineSize($record[4]);
                 $newVehicle->setCylinders($record[5]);
@@ -109,6 +110,14 @@ class DataImportCommand extends ContainerAwareCommand {
                 $newVehicle->setHighwayLph($record[9]);
                 $newVehicle->setCityMpg($record[10]);
                 $newVehicle->setHighwayMpg($record[11]);
+
+                // Emissions calculations changed in 2014
+                $year = (int) $record[0];
+                if ($year < 2014) {
+                    $newVehicle->setEmissions(((int)$record[13]) / 20);
+                } else {
+                    $newVehicle->setEmissions($record[13]);
+                }
 
                 // Is this a "special" model (has ' #' on the end)
                 if (preg_match('/#$/', $record[2])) {

@@ -80,6 +80,11 @@ class Vehicle {
     protected $highwayLph;
 
     /**
+     * @var integer
+     */
+    protected $emissions;
+
+    /**
      * @var string
      */
     protected $modifiers;
@@ -281,6 +286,22 @@ class Vehicle {
     public function getHighOutputEngine()
     {
         return $this->highOutputEngine;
+    }
+
+    /**
+     * @param int $emissions
+     */
+    public function setEmissions($emissions)
+    {
+        $this->emissions = $emissions;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEmissions()
+    {
+        return $this->emissions;
     }
 
     /**
