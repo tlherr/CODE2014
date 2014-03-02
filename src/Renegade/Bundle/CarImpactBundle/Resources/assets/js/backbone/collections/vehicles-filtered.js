@@ -7,7 +7,7 @@ var app = app || {};
         modelId: null,
         year: null,
         url: function() {
-            return window.carImpactSettings.apiPath + 'vehicles/' + this.modelId + '/years/' + this.year;
+            return window.carImpactSettings.apiPath + 'models/' + this.modelId + '/years/' + this.year;
         },
         fetchFiltered: function (model, year, fetchConfig) {
             this.modelId = model;

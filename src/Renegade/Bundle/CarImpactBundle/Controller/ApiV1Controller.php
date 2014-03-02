@@ -27,6 +27,12 @@ class ApiV1Controller extends FOSRestController {
      */
     protected $vehicleRepository;
 
+    /**
+     * Get all makes
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getMakesAction(Request $request)
     {
         $filter = $request->query->get('q', '');
@@ -44,18 +50,25 @@ class ApiV1Controller extends FOSRestController {
         return $this->handleView($view);
     }
 
+    /**
+     * Get make by ID
+     *
+     * @param Make $make
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getMakeAction(Make $make)
     {
         $view = $this->view($make->serialize(), 200);
         return $this->handleView($view);
     }
 
-    public function getModelAction(Model $model)
-    {
-        $view = $this->view($model->serialize(), 200);
-        return $this->handleView($view);
-    }
-
+    /**
+     * Get models by make
+     *
+     * @param Request $request
+     * @param Make $make
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getMakeModelsAction(Request $request, Make $make)
     {
         $filter = $request->query->get('q', '');
@@ -78,7 +91,88 @@ class ApiV1Controller extends FOSRestController {
         return $this->handleView($view);
     }
 
-    public function getVehiclesYearAction(Model $model, $year)
+    /**
+     * @param Model $model
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getModelVehiclesAction(Model $model)
+    {
+        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
+        $data = array();
+        foreach ($vehicles as $vehicle) {
+            $data[] = $vehicle->serialize();
+        }
+
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
+
+    /**
+     * Get all models
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getModelsAction()
+    {
+        $models = $this->getModelRepository()->findAll();
+        $data = array();
+        foreach ($models as $model) {
+            $data[] = $model->serialize();
+        }
+
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * Get model by id
+     *
+     * @param Model $model
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getModelAction(Model $model)
+    {
+        $view = $this->view($model->serialize(), 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * Get
+     * @param Model $model
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getModelYearsAction(Model $model)
+    {
+        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
+        $data = array();
+        $yearsSeen = array();
+        /**
+         * @var Vehicle $vehicle
+         */
+        foreach ($vehicles as $vehicle) {
+            if (!array_key_exists($vehicle->getYear(), $yearsSeen)) {
+                $yearsSeen[$vehicle->getYear()] = true;
+                $data[] = array(
+                    'year' => $vehicle->getYear(),
+                );
+                // Detach vehicle to save some memory
+                $this->getDoctrine()->getManager()->detach($vehicle);
+            }
+        }
+
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * Get years that model was available
+     *
+     * @param Model $model
+     * @param $year
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getModelYearAction(Model $model, $year)
     {
         $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model, 'year' => $year));
         $data = array();
@@ -94,36 +188,9 @@ class ApiV1Controller extends FOSRestController {
         return $this->handleView($view);
     }
 
-    public function getModelYearsAction(Model $model)
-    {
-        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
-        $data = array();
-        $yearsSeen = array();
-        /**
-         * @var Vehicle $vehicle
-         */
-        foreach ($vehicles as $vehicle) {
-            if (!array_key_exists($vehicle->getYear(), $yearsSeen)) {
-                $yearsSeen[$vehicle->getYear()] = true;
-                $data[] = array(
-                    'year' => $vehicle->getYear(),
-                );
-            }
-        }
-
-        $view = $this->view($data, 200);
-        return $this->handleView($view);
-    }
-
-
-    public function getModelModifiersAction(Request $request, Model $model)
-    {
-        $data = $this->getVehicleRepository()->getVehicleModifiersForModel($model);
-        $view = $this->view($data, 200);
-        return $this->handleView($view);
-    }
-
     /**
+     * Get a vehicle by id
+     *
      * @param Vehicle $vehicle
      * @return \Symfony\Component\HttpFoundation\Response
      */
