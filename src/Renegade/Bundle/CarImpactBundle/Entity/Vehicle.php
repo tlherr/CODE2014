@@ -79,9 +79,15 @@ class Vehicle {
      */
     protected $highwayLph;
 
+    /**
+     * @var string
+     */
+    protected $modifiers;
+
     function __construct()
     {
         $this->highOutputEngine = false;
+        $this->modifiers = '';
     }
 
 
@@ -278,6 +284,22 @@ class Vehicle {
     }
 
     /**
+     * @param string $modifiers
+     */
+    public function setModifiers($modifiers)
+    {
+        $this->modifiers = $modifiers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModifiers()
+    {
+        return $this->modifiers;
+    }
+
+    /**
      * Return the string value of the current fuel type
      *
      * @return string
@@ -371,6 +393,7 @@ class Vehicle {
             'cylinders' => $this->cylinders,
             'fuel_type' => $this->fuelType,
             'fuel_type_string' => $this->getFuelTypeString(),
+            'modifiers' => $this->modifiers,
             'mileage' => array(
                 'highway' => array(
                     'mpg' => $this->highwayMpg,

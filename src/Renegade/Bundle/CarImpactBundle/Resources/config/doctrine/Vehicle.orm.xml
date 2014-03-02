@@ -15,6 +15,7 @@
         <field name="engineSize" column="engine_size" type="decimal" precision="3" scale="1"  />
         <field name="highOutputEngine" column="high_output_engine" type="boolean" />
         <field name="cylinders" column="cylinders" type="integer" />
+        <field name="modifiers" column="modifiers" type="string" length="32" />
         <field name="transmissionType" column="transmission_type" type="string" length="2" />
         <field name="fuelType" column="fuel_type" type="string" length="1" />
         <field name="cityMpg" column="mpg_city" type="integer" />
