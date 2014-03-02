@@ -94,6 +94,23 @@ class ApiV1Controller extends FOSRestController {
         return $this->handleView($view);
     }
 
+    public function getModelYearsAction(Model $model)
+    {
+        $vehicles = $this->getVehicleRepository()->findBy(array('model' => $model));
+        $data = array();
+
+        /**
+         * @var Vehicle $vehicle
+         */
+        foreach ($vehicles as $vehicle) {
+            $data[] = $vehicle->getYear();
+        }
+
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
+
     public function getModelModifiersAction(Request $request, Model $model)
     {
         $data = $this->getVehicleRepository()->getVehicleModifiersForModel($model);
