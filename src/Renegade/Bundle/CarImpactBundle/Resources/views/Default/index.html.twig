@@ -20,7 +20,6 @@
                     </select>
                 </div>
 
-                <button href="#" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Add</button>
             </div>
 
             <div>
@@ -54,42 +53,6 @@
 
             <ul id="vehicle-list">
 
-                <!-- Dummy Data -->
-                <li class="vehicle sortable" data-highway-mpg="13" data-city-mpg="15" data-transmission="AS" data-fuel="X" data-year="2014" data-engine-size="3.0">
-                        <span class='id'>2014</span>
-                        <span>Car 1</span>
-                        <span>6 Cylinders, Engine Size 3.0</span>
-                        <span>City MPG: 15</span>«
-                        <span>Highway MPG: 13</span>«
-                </li>
-
-                <li class="vehicle sortable" data-highway-mpg="14" data-city-mpg="16" data-transmission="BS" data-fuel="Y" data-year="2013" data-engine-size="4.0">
-                        <span class='id'>2013</span>
-                        <span>Car 2</span>
-                        <span>6 Cylinders, Engine Size 4.0</span>
-                        <span>City MPG: 16</span>«
-                        <span>Highway MPG: 14</span>«
-                </li>
-
-                <li class="vehicle sortable" data-highway-mpg="12" data-city-mpg="10" data-transmission="CS" data-fuel="W" data-year="2010" data-engine-size="2.0">
-                        <span class='id'>2010</span>
-                        <span>Car 3</span>
-                        <span>6 Cylinders, Engine Size 2.0</span>
-                        <span>City MPG: 10</span>«
-                        <span>Highway MPG: 12</span>«
-                </li>
-
-                <li class="vehicle sortable" data-highway-mpg="9" data-city-mpg="8" data-transmission="AS" data-fuel="X" data-year="2009" data-engine-size="8.0">
-                        <span class='id'>2009</span>
-                        <span>Car 4</span>
-                        <span>6 Cylinders, Engine Size 8.0</span>
-                        <span>City MPG: 8</span>«
-                        <span>Highway MPG: 9</span>«
-                </li>
-
-                <!-- //Dummy Data -->
-
-
             </ul>
         </section>
     </section>
@@ -101,7 +64,7 @@
         <button class="btn btn-success add-button"><span class="glyphicon glyphicon-plus"> Add</button>
     </script>
     <script type="text/template" id="vehicle-template">
-        <div class="vehicle sortable" data-highway-mpg="<%- mileage.city.mpg %>">
+        <div class="vehicle">
             <span class='id'><%- year %></span>
             <span><%- make.label %></span>
             <span><%- model.label %> <%- model.modifiers %></span>
