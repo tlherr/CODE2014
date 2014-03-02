@@ -26,7 +26,7 @@
         {% endblock head %}
         <script type="text/javascript">
             window.carImpactSettings = {
-                apiPath: "{{ path('renegade_car_impacty_api_index') }}"
+                apiPath: "http://code2014.mark.renegade.local/app_dev.php/api/v1/"
             };
         </script>
     </head>
@@ -58,6 +58,7 @@
             <script>window.jQuery || document.write('<script src="{{ asset_url }}"><\/script>')</script>
             {% endjavascripts %}
             {% javascripts
+                '@RenegadeCarImpactBundle/Resources/assets/bower/bootstrap/js/collapse.js'
                 '@RenegadeCarImpactBundle/Resources/assets/bower/underscore/underscore.js'
                 '@RenegadeCarImpactBundle/Resources/assets/bower/backbone/backbone.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/views/app-view.js'
@@ -71,6 +72,8 @@
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/collections/models.js'
                 '@RenegadeCarImpactBundle/Resources/assets/js/backbone/app.js'
                 '@RenegadeCarImpactBundle/Resources/assets/bower/select2/select2.js'
+                '@RenegadeCarImpactBundle/Resources/assets/bower/tinysort/dist/jquery.tinysort.js'
+                '@RenegadeCarImpactBundle/Resources/assets/js/sorting.js'
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}

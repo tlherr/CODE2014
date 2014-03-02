@@ -1,3 +1,13 @@
-body {
-  @include background-grid;
+
+button[data-sort-order="asc"] {
+  @extend .btn-success;
+}
+
+button[data-sort-order="desc"] {
+  @extend .btn-danger;
+}
+
+
+section#vehicle-listing {
+  margin-top: 35px;
 }

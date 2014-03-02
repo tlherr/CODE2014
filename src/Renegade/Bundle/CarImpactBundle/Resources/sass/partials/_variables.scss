@@ -1,8 +1,4 @@
-$grids: 6;
-$grids: add-grid(6 at $screen-xs);
-$grids: add-grid(8 at $screen-sm);
-$grids: add-grid(12 at $screen-md);
-$grids: add-grid(24 at $screen-lg);
 
-$gutters: 1/3;
-$gutters: add-gutter(.25 at $screen-md);
+$bp1: 500px;
+$bp2: 800px;
+$bp3: 1279px;

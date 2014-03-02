@@ -10,7 +10,8 @@
     "modernizr": "2.7.1",
     "bootstrap": "3.1.1",
     "backbone": "~1.1.2",
-    "select2": "~3.4.5"
+    "select2": "~3.4.5",
+    "tinysort": "*"
   },
   "description": "UI Elements for CarImpact Bundle",
   "license": "MIT",

@@ -1,0 +1,26 @@
+
+ul#vehicle-list {
+  margin:0px;
+  padding:0px;
+
+  li.vehicle {
+    list-style: none;
+    padding: 0px;
+    display: inline-block;
+    background-color:#5bc0de;
+    color:white;
+    border-radius: 10px;
+    padding: 2.5%;
+    margin: 2.5%;
+
+    @include breakpoint($bp2) {
+      width: 44%;
+    }
+
+    @include breakpoint(max-width $bp2) {
+      width: 95%;
+    }
+
+    vertical-align: top;
+  }
+}
