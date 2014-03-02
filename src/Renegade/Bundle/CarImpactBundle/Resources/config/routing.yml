@@ -2,11 +2,16 @@ renegade_car_impact_homepage:
     pattern:  /
     defaults: { _controller: RenegadeCarImpactBundle:Default:index }
 
+renegade_car_impact_about:
+    pattern: /about
+    defaults: { _controller: RenegadeCarImpactBundle:Default:about }
 
 renegade_car_impacty_api_index:
     pattern: /api/v1/
+    options: { i18n: false }
 
 renegade_car_impact_api_v1:
     resource: "@RenegadeCarImpactBundle/Resources/config/routing/api_v1.yml"
     prefix:   /api/v1/
+    options: { i18n: false }
 

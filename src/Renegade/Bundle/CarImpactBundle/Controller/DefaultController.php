@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('RenegadeCarImpactBundle:Default:index.html.twig', array());
     }
+
+    public function aboutAction()
+    {
+        return $this->render('RenegadeCarImpactBundle:Default:about.html.twig', array());
+    }
 }

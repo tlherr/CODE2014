@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%default_locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -15,7 +15,7 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  "%default_locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -72,7 +72,6 @@ fos_rest:
     routing_loader:
         default_format: json
 
-
 nelmio_cors:
     paths:
         '^/api':
@@ -82,3 +81,8 @@ nelmio_cors:
             allow_methods: ['POST','GET','DELETE','PUT']
             expose_headers: []
             max_age: 3600
+
+jms_i18n_routing:
+    default_locale: %default_locale%
+    locales: %locales%
+    strategy: prefix
