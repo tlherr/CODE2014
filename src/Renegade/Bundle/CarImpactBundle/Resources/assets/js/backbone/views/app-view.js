@@ -1,7 +1,7 @@
 /*global Backbone,console */
 var app = app || {};
 
-(function (undefined) {
+(function ($, undefined) {
     'use strict';
 
     app.AppView = Backbone.View.extend({
@@ -68,4 +68,4 @@ var app = app || {};
             this.$modelEntry.select2().prop('disabled', true);
         }
     });
-})();
+})(jQuery);
