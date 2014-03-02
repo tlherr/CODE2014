@@ -25,6 +25,7 @@ var app = app || {};
             this.$modelEntry.select2();
             this.$yearEntry.select2();
 
+            this.$vehicleSelectList.on('load:vehicle', this.loadVehicle);
             this.$modelEntry.select2('enable', false);
             this.$yearEntry.select2('enable', false);
 
@@ -41,6 +42,14 @@ var app = app || {};
             this.render();
         },
         render: function () {},
+        loadVehicle: function (obj) {
+            var newVehicle = new app.Vehicle({id: obj.id});
+            newVehicle.fetch({
+                success: function (obj) {
+                    app.vehicles.add(obj);
+                }
+            });
+        },
         addVehicle: function (vehicle) {
             var vehicleView = new app.VehicleView({ model: vehicle });
             this.$list.append(vehicleView.render().el);
@@ -56,14 +65,13 @@ var app = app || {};
             });
         },
         loadFilteredVehicles: function () {
-            var that = this,
-                successCallback;
-
+            var that = this;
             if (this.currentModel && this.currentYear) {
                 app.filteredVehicles.fetchFiltered(this.currentModel, this.currentYear, {
                     success: function () {
                         app.filteredVehicles.forEach(function(obj) {
                             var vehicleView = new app.VehicleSelectView({model: obj});
+                            vehicleView.on('load:vehicle', that.loadVehicle);
                             that.$vehicleSelectList.append(vehicleView.render().el);
                         });
                     }
@@ -71,10 +79,10 @@ var app = app || {};
             }
         },
         filteredVehiclesReset: function () {
-            console.log("Clear out");
+            this.$vehicleSelectList.find('li').off('load:vehicle').remove();
         },
         clearVehicleSelect: function () {
-            this.$vehicleSelectList.find('li').remove();
+            app.filteredVehicles.reset();
         },
         makeChanged: function(e) {
             var newValue = this.$makeEntry.val();
