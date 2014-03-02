@@ -30,27 +30,25 @@
 
         </section>
 
-        <div class="hamburger" tabindex="0">
+        <section id="vehicle-listing">
+            <div class="hamburger" tabindex="0">
                 <span class="menu">
                     <span class="glyphicon glyphicon-search"></span> Sort
                 </span>
 
-            <menu type="list" class="push-golden">
-                <div class="btn-group-vertical filters-container">
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-city-mpg" data-sort-order="none">{{ "Fuel Economy (City MPG)"|trans }} <span class="glyphicon glyphicon-tower"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-highway-mpg" data-sort-order="none">{{ "Fuel Economy (Highway MPG)"|trans }} <span class="glyphicon glyphicon-road"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-transmission" data-sort-order="none">{{ "Transmission Type"|trans }} <span class="glyphicon glyphicon-cog"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-fuel" data-sort-order="none">{{ "Fuel Type"|trans }} <span class="glyphicon glyphicon-fire"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-emissions" data-sort-order="none">{{ "Emissions"|trans }} <span class="glyphicon glyphicon-tree-conifer"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-year" data-sort-order="none">{{ "Year"|trans }} <span class="glyphicon glyphicon-calendar"></span></button>
-                    <button type="button" class="btn btn-default filter" data-sort-attr="data-engine-size" data-sort-order="none">{{ "Engine Size"|trans }} <span class="glyphicon glyphicon-filter"></span></button>
+                <menu type="list" class="push-golden">
+                    <div class="btn-group-vertical filters-container">
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-city-mpg" data-sort-order="none">{{ "Fuel Economy (City MPG)"|trans }} <span class="glyphicon glyphicon-tower"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-highway-mpg" data-sort-order="none">{{ "Fuel Economy (Highway MPG)"|trans }} <span class="glyphicon glyphicon-road"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-transmission" data-sort-order="none">{{ "Transmission Type"|trans }} <span class="glyphicon glyphicon-cog"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-fuel" data-sort-order="none">{{ "Fuel Type"|trans }} <span class="glyphicon glyphicon-fire"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-emissions" data-sort-order="none">{{ "Emissions"|trans }} <span class="glyphicon glyphicon-tree-conifer"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-year" data-sort-order="none">{{ "Year"|trans }} <span class="glyphicon glyphicon-calendar"></span></button>
+                        <button type="button" class="btn btn-default filter" data-sort-attr="data-engine-size" data-sort-order="none">{{ "Engine Size"|trans }} <span class="glyphicon glyphicon-filter"></span></button>
 
-                </div>
-            </menu>
-        </div>
-
-        <section id="vehicle-listing">
-
+                    </div>
+                </menu>
+            </div>
             <ul id="vehicle-list">
 
             </ul>
@@ -65,13 +63,14 @@
     </script>
     <script type="text/template" id="vehicle-template">
         <div class="vehicle">
-            <span class='id'><%- year %></span>
-            <span><%- make.label %></span>
-            <span><%- model.label %> <%- model.modifiers %></span>
-            <span><%- cylinders %>, <%- engine_size %></span>
-            <span><%- fuel_type_string %></span>
-            <span><%- transmission_type_string %></span>
-            <span>City MPG: <%- mileage.city.mpg %></span>«
+            <span class='data-year'><%- year %></span>
+            <span class='data-label'><%- make.label %> <%- model.label %> <%- model.modifiers %></span>
+            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
+            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
+            <span class='data-engine'><%- cylinders %> {{ "cylinder"|trans({}) }}, <%- engine_size %>L</span>
+            <span class='data-fuel'><%- fuel_type_string %></span>
+            <span class='data-transmission'><%- transmission_type_string %></span>
+            <span class='data-mileage'>City MPG: <%- mileage.city.mpg %></span>
         </div>
     </script>
 {% endblock %}
